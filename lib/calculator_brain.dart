@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
+import 'constants.dart';
+
 class CalculatorBrain {
 
   CalculatorBrain({this.weight,this.height});
@@ -13,23 +16,23 @@ class CalculatorBrain {
     return _bmi.toStringAsFixed(1);
   }
 
-  String getResults(){
+  Widget getResults(){
     if (_bmi>=25.0){
-      return 'Overweight';
+      return BmiResult(text:'OVERWEIGHT',color : Color(0xFFdd2c00));
     }else if (_bmi>18.5){
-      return 'Normal';
+      return BmiResult(text:'NORMAL',color: Color(0xFF639a67));
     }else {
-      return 'Underweight';
+      return BmiResult(text:'UNDERWEIGHT',color : Color(0xFFb2ebf2));
     }
   }
 
-  String resultsExplain(){
+  Widget resultsExplain(){
     if (_bmi>=25.0){
-      return 'You have to lose some weight ASAP';
+      return BmiResult(text:'You are overweight, please adapt a better diet and try to exercise more.',color : Color(0xFFdd2c00));
     }else if (_bmi>18.5){
-      return 'You are fine';
+      return BmiResult(text:'You are normal, keep it up this way and dont forget to exercise.',color: Color(0xFF639a67));
     }else {
-      return 'You have to eat more';
+      return BmiResult(text:'You are underweight, you have to eat more and exercise.',color : Color(0xFFb2ebf2));
     }
   }
 

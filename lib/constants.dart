@@ -12,13 +12,11 @@ const kResultsTitle = Text (
         fontFamily: 'FredokaOne',
         fontSize: 50
     ));
-
 const kHeightLabelTextStyle = TextStyle(
   fontFamily: 'FredokaOne',
   fontSize: 20.0,
   color: Color(0xFFd2fafb)
 );
-
 const kHeightTextStyle = TextStyle(
     fontSize: 58.0,
     color: Color(0xFFd2fafb),
@@ -30,6 +28,7 @@ const kCmTextStyle = TextStyle(
     fontFamily: 'FredokaOne',
     fontWeight: FontWeight.w200
 );
+
 
 class LargeBottomButton extends StatelessWidget {
 
@@ -81,4 +80,24 @@ class RoundIconButton extends StatelessWidget {
             child: Icon(icon),
         );
     }
+}
+
+class BmiResult extends StatelessWidget {
+  BmiResult({this.text,this.color});
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: color,
+            fontFamily: 'FredokaOne',
+            fontSize: 35,
+
+        ),
+    );
+  }
 }
