@@ -4,11 +4,12 @@ import 'constants.dart';
 
 class ResultsPage extends StatelessWidget {
 
-  ResultsPage({@required this.bmiResult,@required this.bmiNumber,@required this.bmiExplain});
+  ResultsPage({@required this.bmiResult,@required this.bmiNumber,@required this.bmiExplain,this.dailyCalories});
 
   final Widget bmiResult;
   final String bmiNumber;
   final Widget bmiExplain;
+  final Widget dailyCalories;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,17 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Center(child: kDailyCalories),
+              Container(
+                  child: ReusableCard(
+                      mainColor: kActiveCardColor,
+                      cardChild: dailyCalories,
+                  )
+              )],),
           LargeBottomButton(
             text: "RE-CALCULATE",
             onPress: (){

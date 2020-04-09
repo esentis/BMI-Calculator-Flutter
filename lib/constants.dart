@@ -28,7 +28,12 @@ const kCmTextStyle = TextStyle(
     fontFamily: 'FredokaOne',
     fontWeight: FontWeight.w200
 );
-
+const kDailyCalories = Text (
+    "Daily Calories Intake",
+    style:TextStyle(
+        fontFamily: 'FredokaOne',
+        fontSize: 20
+    ));
 
 class LargeBottomButton extends StatelessWidget {
 
@@ -100,4 +105,8 @@ class BmiResult extends StatelessWidget {
         ),
     );
   }
+}
+enum kGender {
+    male,
+    female
 }

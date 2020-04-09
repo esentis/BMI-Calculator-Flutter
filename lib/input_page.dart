@@ -9,10 +9,7 @@ import 'reusable_card.dart';
 import 'constants.dart';
 
 
-enum Gender {
-  male,
-  female
-}
+
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,7 +20,7 @@ class _InputPageState extends State<InputPage> {
 
   Color maleColor = kInactiveCardColor;
   Color femaleColor = kInactiveCardColor;
-  Gender selectedGender;
+  kGender selectedGender;
   int weight = 65;
   int height = 165;
   int age = 18;
@@ -46,18 +43,18 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                       onPress: () {
                         setState(() {
-                          selectedGender = Gender.male;
+                          selectedGender = kGender.male;
                         });
                       },
-                      mainColor: selectedGender==Gender.male ? maleColor=kActiveCardColor : maleColor=kInactiveCardColor,
+                      mainColor: selectedGender==kGender.male ? maleColor=kActiveCardColor : maleColor=kInactiveCardColor,
                       cardChild: GenderCard(
                         icon: FontAwesomeIcons.mars,
-                        iconColor: selectedGender==Gender.male ? maleColor=Colors.blue : maleColor=Color(0x29d2fafb),
+                        iconColor: selectedGender==kGender.male ? maleColor=Colors.blue : maleColor=Color(0x29d2fafb),
                         iconSize : 100.0,
                         text: "Male",
                         textFont: 'FredokaOne',
                         textSize: 20.0,
-                        textColor: selectedGender==Gender.male ? maleColor=Colors.blue : maleColor=Color(0x29d2fafb),
+                        textColor: selectedGender==kGender.male ? maleColor=Colors.blue : maleColor=Color(0x29d2fafb),
                       ),
                   ),
                 ),
@@ -65,18 +62,18 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                       onPress: (){
                         setState(() {
-                          selectedGender = Gender.female;
+                          selectedGender = kGender.female;
                         });
                       },
-                      mainColor: selectedGender==Gender.female ? femaleColor=kActiveCardColor : femaleColor=kInactiveCardColor,
+                      mainColor: selectedGender==kGender.female ? femaleColor=kActiveCardColor : femaleColor=kInactiveCardColor,
                       cardChild: GenderCard(
                           icon: FontAwesomeIcons.venus,
                           iconSize: 100.0,
-                          iconColor: selectedGender==Gender.female ? femaleColor=Colors.pink : femaleColor=Color(0x29d2fafb),
+                          iconColor: selectedGender==kGender.female ? femaleColor=Colors.pink : femaleColor=Color(0x29d2fafb),
                           text: "Female",
                           textFont: 'FredokaOne',
                           textSize: 20.0,
-                          textColor: selectedGender==Gender.female ? femaleColor=Colors.pink : femaleColor=Color(0x29d2fafb),
+                          textColor: selectedGender==kGender.female ? femaleColor=Colors.pink : femaleColor=Color(0x29d2fafb),
                       ),
                   ),
                 ),
@@ -203,12 +200,13 @@ class _InputPageState extends State<InputPage> {
           LargeBottomButton(
             text: "CALCULATE",
             onPress: (){
-              CalculatorBrain calc = new CalculatorBrain(weight: weight,height: height);
+              CalculatorBrain calc = new CalculatorBrain(weight: weight,height: height,age: age,gender: selectedGender);
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => ResultsPage(
                   bmiNumber: calc.calculateBmi(),
                   bmiResult: calc.getResults(),
                   bmiExplain: calc.resultsExplain(),
+                  dailyCalories: calc.dailyCalorieIntake(),
                 )
               ),);
             },
