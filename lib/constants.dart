@@ -94,15 +94,32 @@ class BmiResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-        text,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-            color: color,
-            fontFamily: 'FredokaOne',
-            fontSize: 35,
+    return Tooltip(
+      message: 'Very severely underweight: 0-15'
+          '\nSeverely underweight: 15-16'
+          '\nUnderweight: 16-18.5'
+          '\nNormal: 18.5-25'
+          '\nOverweight: 25-30'
+          '\nModerately Obese: 30-35'
+          '\nSeverely obese: 35-40'
+          '\nVery severely obese: 40-',
+      showDuration: Duration(seconds: 4),
+      textStyle: TextStyle(
+          fontFamily: 'FredokaOne',
+          fontWeight: FontWeight.w100,
+          color: Color(0xFFD00002),
+          fontSize: 20
+      ),
+      child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: color,
+              fontFamily: 'FredokaOne',
+              fontSize: 35,
 
-        ),
+          ),
+      ),
     );
   }
 }

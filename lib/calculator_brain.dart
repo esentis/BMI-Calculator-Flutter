@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'constants.dart';
 
@@ -54,11 +55,24 @@ class CalculatorBrain {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: <Widget>[
-        Text(_dailyCalories.toStringAsFixed(0),style: TextStyle(
-          fontFamily: 'FredokaOne',
-          fontWeight: FontWeight.w100,
-          fontSize: 50
-        ),),
+        Tooltip(
+          message: 'This is an approximation.',
+          height: 5.0,
+          verticalOffset: 48,
+          waitDuration: Duration(seconds: 1),
+          textStyle: TextStyle(
+              fontFamily: 'FredokaOne',
+              fontWeight: FontWeight.w100,
+              color: Color(0xFFD00002),
+              fontSize: 20
+          ),
+          showDuration: Duration(seconds: 2),
+          child: Text(_dailyCalories.toStringAsFixed(0),style: TextStyle(
+            fontFamily: 'FredokaOne',
+            fontWeight: FontWeight.w100,
+            fontSize: 50
+          ),),
+        ),
         SizedBox(width: 10.0,),
         Text('calories',style: TextStyle(
     fontFamily: 'FredokaOne',
