@@ -7,7 +7,7 @@ class ResultsPage extends StatelessWidget {
   ResultsPage({@required this.bmiResult,@required this.bmiNumber,@required this.bmiExplain,this.dailyCalories});
 
   final Widget bmiResult;
-  final String bmiNumber;
+  final Widget bmiNumber;
   final Widget bmiExplain;
   final Widget dailyCalories;
 
@@ -30,14 +30,15 @@ class ResultsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Center(child: bmiResult,),
-                  Center(child: Text(bmiNumber,
-                    style: TextStyle(
-                      fontSize: 120,
-                      fontFamily: 'FredokaOne'
-                    ),
-                  ),),
-                  Center(child: bmiExplain,),
+                  Center(
+                    heightFactor: 0,
+                    child: bmiResult,),
+                  Center(
+                    heightFactor: 1,
+                    child: bmiNumber,),
+                  Center(
+                    heightFactor: 1,
+                    child: bmiExplain,),
                 ],
               ),
             ),

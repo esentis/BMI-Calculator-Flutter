@@ -36,11 +36,9 @@ const kDailyCalories = Text (
     ));
 
 class LargeBottomButton extends StatelessWidget {
-
     LargeBottomButton({this.onPress,this.text});
     final Function onPress;
     final String text;
-
     @override
     Widget build(BuildContext context) {
         return GestureDetector(
@@ -61,9 +59,7 @@ class LargeBottomButton extends StatelessWidget {
         );
     }
 }
-
 class RoundIconButton extends StatelessWidget {
-
     RoundIconButton({@required this.icon,this.onPress,this.onLongPress});
     final IconData icon;
     final Function onPress;
@@ -86,43 +82,44 @@ class RoundIconButton extends StatelessWidget {
         );
     }
 }
-
 class BmiResult extends StatelessWidget {
   BmiResult({this.text,this.color});
   final String text;
   final Color color;
-
+  final GlobalKey _toolTipKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: 'Very severely underweight: 0-15'
-          '\nSeverely underweight: 15-16'
-          '\nUnderweight: 16-18.5'
-          '\nNormal: 18.5-25'
-          '\nOverweight: 25-30'
-          '\nModerately Obese: 30-35'
-          '\nSeverely obese: 35-40'
-          '\nVery severely obese: 40-',
-      showDuration: Duration(seconds: 4),
-      textStyle: TextStyle(
-          fontFamily: 'FredokaOne',
-          fontWeight: FontWeight.w100,
-          color: Color(0xFFD00002),
-          fontSize: 20
-      ),
-      child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: color,
-              fontFamily: 'FredokaOne',
-              fontSize: 35,
-
-          ),
+    return Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: color,
+            fontFamily: 'FredokaOne',
+            fontSize: 30
+        ),
+    );
+  }
+}
+class BmiTitle extends StatelessWidget {
+  BmiTitle({this.text,this.color});
+  final String text;
+  final Color color;
+  final GlobalKey _toolTipKey = GlobalKey();
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: color,
+        fontFamily: 'FredokaOne',
+        fontSize: 40,
       ),
     );
   }
 }
+
+
 enum kGender {
     male,
     female

@@ -15,19 +15,54 @@ class CalculatorBrain {
   double _dailyCalories;
   double _bmi;
 
-  String calculateBmi(){
-
+  Widget calculateBmi(){
+    GlobalKey _toolTipKey = GlobalKey();
     _bmi = weight/pow(height/100,2);
-    return _bmi.toStringAsFixed(1);
+    return Column(
+      children: <Widget>[
+        Text('TAP FOR MORE INFO',style: TextStyle(fontFamily: 'FredokaOne'),),
+        GestureDetector(
+          onTap: (){
+            final dynamic tooltip = _toolTipKey.currentState;
+            tooltip.ensureTooltipVisible();
+          },
+          child: Tooltip(
+              padding: EdgeInsets.all(20),
+              height: 40,
+              key: _toolTipKey,
+              message: 'Very severely underweight: 0-15'
+                  '\nSeverely underweight: 15-16'
+                  '\nUnderweight: 16-18.5'
+                  '\nNormal: 18.5-25'
+                  '\nOverweight: 25-30'
+                  '\nModerately Obese: 30-35'
+                  '\nSeverely obese: 35-40'
+                  '\nVery severely obese: 40-',
+              textStyle: TextStyle(
+                fontFamily: 'FredokaOne',
+                fontSize: 20,
+                color: Colors.red
+              ),
+              child: Text(_bmi.toStringAsFixed(1),
+              style: TextStyle(
+                fontSize: 75,
+                fontWeight: FontWeight.w900,
+                fontFamily: 'FredokaOne',
+
+              ),)),
+        ),
+      ],
+    );
+
   }
 
   Widget getResults(){
     if (_bmi>=25.0){
-      return BmiResult(text:'OVERWEIGHT',color : Color(0xFFdd2c00));
+      return BmiTitle(text:'OVERWEIGHT',color : Color(0xFFdd2c00));
     }else if (_bmi>18.5){
-      return BmiResult(text:'NORMAL',color: Color(0xFF639a67));
+      return BmiTitle(text:'NORMAL',color: Color(0xFF639a67));
     }else {
-      return BmiResult(text:'UNDERWEIGHT',color : Color(0xFFb2ebf2));
+      return BmiTitle(text:'UNDERWEIGHT',color : Color(0xFFb2ebf2));
     }
   }
 
