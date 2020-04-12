@@ -156,8 +156,12 @@ class _InputPageState extends State<InputPage> {
                           onPress:(){
                             setState(() {
                             weight++;
-                          });
-                      }),
+                            });
+                          },
+                        onLongPress:(){
+
+                        } ,
+                      ),
                     ],),
                   ],),),
                 ),

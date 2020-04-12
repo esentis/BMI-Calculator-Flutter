@@ -72,10 +72,11 @@ class RoundIconButton extends StatelessWidget {
                 width: 60.0
             ),
             elevation: 10.0,
+
             onPressed: onPress,
             onLongPress: onLongPress,
             fillColor: Color(0xFFfe346e),
-            highlightColor: Color(0x29512b58),
+            highlightColor: Colors.white,
             highlightElevation: 20.0,
             shape: CircleBorder(),
             child: Icon(icon),

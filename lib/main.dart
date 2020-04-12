@@ -7,18 +7,22 @@ import 'results_page.dart';
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
+  ThemeData themeSelector() {
+    return ThemeData.dark().copyWith(
+      primaryColor: Color(0xFF2c003e),
+      scaffoldBackgroundColor: Color(0xFF2c003e),
+    );
+  }
   @override
   Widget build(BuildContext context) {
+
     // LOCK THE ORIENTATION
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xFF2c003e),
-        scaffoldBackgroundColor: Color(0xFF2c003e) ,
-      ),
+      theme: themeSelector(),
       initialRoute: '/',
       routes: {
         '/' :(context) => InputPage(),

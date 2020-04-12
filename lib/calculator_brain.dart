@@ -15,6 +15,16 @@ class CalculatorBrain {
   double _dailyCalories;
   double _bmi;
 
+  Color toolTipTextColor(){
+    if (_bmi>=25.0){
+      return Colors.red;
+    }else if (_bmi>18.5){
+      return Colors.green;
+    }else {
+      return Colors.cyan;
+    }
+  }
+
   Widget calculateBmi(){
     GlobalKey _toolTipKey = GlobalKey();
     _bmi = weight/pow(height/100,2);
@@ -41,7 +51,7 @@ class CalculatorBrain {
               textStyle: TextStyle(
                 fontFamily: 'FredokaOne',
                 fontSize: 20,
-                color: Colors.red
+                color: toolTipTextColor()
               ),
               child: Text(_bmi.toStringAsFixed(1),
               style: TextStyle(
@@ -78,6 +88,8 @@ class CalculatorBrain {
 
   Widget dailyCalorieIntake(){
 
+    GlobalKey _toolTip = GlobalKey();
+
     if (gender==kGender.male){
       //Mifflin St Jeor Equation
       _dailyCalories = (weight*10)+(height*6.25)-(age*5)+5;
@@ -90,29 +102,36 @@ class CalculatorBrain {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: <Widget>[
-        Tooltip(
-          message: 'This is an approximation.',
-          height: 5.0,
-          verticalOffset: 48,
-          waitDuration: Duration(seconds: 1),
-          textStyle: TextStyle(
+        GestureDetector(
+          onTap: (){
+            final dynamic tooltip = _toolTip.currentState;
+            tooltip.ensureTooltipVisible();
+          },
+          child: Tooltip(
+            key: _toolTip,
+            message: 'This is an approximation.',
+            height: 5.0,
+            verticalOffset: 48,
+            waitDuration: Duration(seconds: 1),
+            textStyle: TextStyle(
+                fontFamily: 'FredokaOne',
+                fontWeight: FontWeight.w100,
+                color: toolTipTextColor(),
+                fontSize: 20
+            ),
+            showDuration: Duration(seconds: 2),
+            child: Text(_dailyCalories.toStringAsFixed(0),style: TextStyle(
               fontFamily: 'FredokaOne',
               fontWeight: FontWeight.w100,
-              color: Color(0xFFD00002),
-              fontSize: 20
+              fontSize: 50
+            ),),
           ),
-          showDuration: Duration(seconds: 2),
-          child: Text(_dailyCalories.toStringAsFixed(0),style: TextStyle(
-            fontFamily: 'FredokaOne',
-            fontWeight: FontWeight.w100,
-            fontSize: 50
-          ),),
         ),
         SizedBox(width: 10.0,),
         Text('calories',style: TextStyle(
     fontFamily: 'FredokaOne',
     fontWeight: FontWeight.w100,
-    color: Color(0xFFD00002),
+    color: toolTipTextColor(),
     fontSize: 40
     )),
       ],
