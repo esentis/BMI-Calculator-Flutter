@@ -13,9 +13,9 @@ class BMICalculator extends StatelessWidget {
       scaffoldBackgroundColor: Color(0xFF2c003e),
     );
   }
+
   @override
   Widget build(BuildContext context) {
-
     // LOCK THE ORIENTATION
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -25,10 +25,9 @@ class BMICalculator extends StatelessWidget {
       theme: themeSelector(),
       initialRoute: '/',
       routes: {
-        '/' :(context) => InputPage(),
-        '/results' :(context) => ResultsPage()
+        '/': (context) => InputPage(),
+        // '/results' :(context) => ResultsPage()
       },
     );
   }
 }
-
