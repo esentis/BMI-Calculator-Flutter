@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'gender_card.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _InputPageState extends State<InputPage> {
   int height = 165;
   int age = 18;
   bool tapping;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,45 +99,32 @@ class _InputPageState extends State<InputPage> {
                   SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: <Widget>[
-                      Text(
-                        height.toString(),
-                        style: kHeightTextStyle,
+                  SleekCircularSlider(
+                      min: 120,
+                      max: 210,
+                      initialValue: 150,
+                      appearance: CircularSliderAppearance(
+                        size: 160,
+                        infoProperties: InfoProperties(
+                          modifier: (value){
+                            final roundedValue = value.ceil().toInt().toString();
+                            return '$roundedValue cm';
+                          },
+                          mainLabelStyle: TextStyle(
+                            fontSize: 30,
+                            fontFamily: 'FredokaOne'
+                          ),
+                        ),
+                        customColors: CustomSliderColors(
+                          //GRADIENT SLIDER FOR HEIGHT
+                            progressBarColors : [Color(0xFFEB1555),Color(0xFFfe346e),Color(0xFF512b58)],
+                        ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "cm",
-                        style: kCmTextStyle,
-                      )
-                    ],
-                  ),
-                  SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: Color(0xFFd2fafb),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 25),
-                        thumbColor: Color(0xFFfe346e),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 45),
-                        inactiveTrackColor: Color(0x29d2fafb),
-                        overlayColor: Color(0x29fe346e)),
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220,
-                      onChanged: (double newValue) {
+                      onChange: (double value) {
                         setState(() {
-                          height = newValue.round();
+                          height=value.toInt();
                         });
-                      },
-                    ),
-                  ),
+                      }),
                 ],
               ),
             ),
@@ -229,6 +218,7 @@ class _InputPageState extends State<InputPage> {
                                 }),
                           ],
                         ),
+
                       ],
                     ),
                   ),
