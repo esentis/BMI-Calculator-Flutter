@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class ResultsPage extends StatelessWidget {
-
-  ResultsPage({@required this.bmiResult,@required this.bmiNumber,@required this.bmiExplain,this.dailyCalories});
+  const ResultsPage({
+    @required this.bmiResult,
+    @required this.bmiNumber,
+    @required this.bmiExplain,
+    this.dailyCalories,
+  });
 
   final Widget bmiResult;
   final Widget bmiNumber;
@@ -15,15 +19,15 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: kAppTitle),
+        title: const Center(child: kAppTitle),
       ),
       body: Column(
         children: <Widget>[
-          Expanded(
+          const Expanded(
             child: kResultsTitle,
           ),
           Expanded(
-            flex:5,
+            flex: 5,
             child: ReusableCard(
               mainColor: kActiveCardColor,
               cardChild: Column(
@@ -32,13 +36,16 @@ class ResultsPage extends StatelessWidget {
                 children: <Widget>[
                   Center(
                     heightFactor: 0,
-                    child: bmiResult,),
+                    child: bmiResult,
+                  ),
                   Center(
                     heightFactor: 1,
-                    child: bmiNumber,),
+                    child: bmiNumber,
+                  ),
                   Center(
                     heightFactor: 1,
-                    child: bmiExplain,),
+                    child: bmiExplain,
+                  ),
                 ],
               ),
             ),
@@ -47,22 +54,24 @@ class ResultsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Center(child: kDailyCalories),
+              const Center(
+                child: kDailyCalories,
+              ),
               Container(
                   child: ReusableCard(
-                      mainColor: kActiveCardColor,
-                      cardChild: dailyCalories,
-                  )
-              )],),
+                mainColor: kActiveCardColor,
+                cardChild: dailyCalories,
+              ))
+            ],
+          ),
           LargeBottomButton(
-            text: "RE-CALCULATE",
-            onPress: (){
+            text: 'RE-CALCULATE',
+            onPress: () {
               Navigator.pop(context);
             },
           )
         ],
       ),
-
     );
   }
 }

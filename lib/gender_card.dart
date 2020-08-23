@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-class GenderCard extends StatelessWidget {
 
-  GenderCard({@required this.icon, @required this.iconSize,@required this.text,this.iconColor,this.textColor,this.textSize,this.textFont});
+class GenderCard extends StatelessWidget {
+  const GenderCard(
+      {@required this.icon,
+      @required this.iconSize,
+      @required this.text,
+      this.iconColor,
+      this.textColor,
+      this.textSize,
+      this.textFont});
   final icon;
   final iconSize;
   final text;
@@ -17,18 +23,21 @@ class GenderCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(
-            icon,
-            size:iconSize,
-            color: iconColor,
+          icon,
+          size: iconSize,
+          color: iconColor,
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
-        Text(text, style: TextStyle(
+        Text(
+          text,
+          style: TextStyle(
             fontSize: textSize,
             color: textColor,
-            fontFamily: textFont
-        ),)
+            fontFamily: textFont,
+          ),
+        )
       ],
     );
   }

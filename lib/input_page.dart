@@ -25,7 +25,9 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: kAppTitle),
+        title: const Center(
+          child: kAppTitle,
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,12 +51,12 @@ class _InputPageState extends State<InputPage> {
                           ? maleColor = Colors.blue
                           : maleColor = Color(0x29d2fafb),
                       iconSize: 100.0,
-                      text: "Male",
+                      text: 'Male',
                       textFont: 'FredokaOne',
                       textSize: 20.0,
                       textColor: selectedGender == kGender.male
                           ? maleColor = Colors.blue
-                          : maleColor = Color(0x29d2fafb),
+                          : maleColor = const Color(0x29d2fafb),
                     ),
                   ),
                 ),
@@ -73,13 +75,13 @@ class _InputPageState extends State<InputPage> {
                       iconSize: 100.0,
                       iconColor: selectedGender == kGender.female
                           ? femaleColor = Colors.pink
-                          : femaleColor = Color(0x29d2fafb),
-                      text: "Female",
+                          : femaleColor = const Color(0x29d2fafb),
+                      text: 'Female',
                       textFont: 'FredokaOne',
                       textSize: 20.0,
                       textColor: selectedGender == kGender.female
                           ? femaleColor = Colors.pink
-                          : femaleColor = Color(0x29d2fafb),
+                          : femaleColor = const Color(0x29d2fafb),
                     ),
                   ),
                 ),
@@ -92,39 +94,46 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    "HEIGHT",
+                  const Text(
+                    'HEIGHT',
                     style: kHeightLabelTextStyle,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  SleekCircularSlider(
-                      min: 120,
-                      max: 210,
-                      initialValue: 150,
-                      appearance: CircularSliderAppearance(
-                        size: 160,
-                        infoProperties: InfoProperties(
-                          modifier: (value){
-                            final roundedValue = value.ceil().toInt().toString();
-                            return '$roundedValue cm';
-                          },
-                          mainLabelStyle: TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'FredokaOne'
+                  Expanded(
+                    child: SleekCircularSlider(
+                        min: 120,
+                        max: 210,
+                        initialValue: 150,
+                        appearance: CircularSliderAppearance(
+                          size: 160,
+                          infoProperties: InfoProperties(
+                            modifier: (value) {
+                              var roundedValue =
+                                  value.ceil().toInt().toString();
+                              return '$roundedValue cm';
+                            },
+                            mainLabelStyle: const TextStyle(
+                              fontSize: 30,
+                              fontFamily: 'FredokaOne',
+                            ),
+                          ),
+                          customColors: CustomSliderColors(
+                            //GRADIENT SLIDER FOR HEIGHT
+                            progressBarColors: [
+                              const Color(0xFFEB1555),
+                              const Color(0xFFfe346e),
+                              const Color(0xFF512b58)
+                            ],
                           ),
                         ),
-                        customColors: CustomSliderColors(
-                          //GRADIENT SLIDER FOR HEIGHT
-                            progressBarColors : [Color(0xFFEB1555),Color(0xFFfe346e),Color(0xFF512b58)],
-                        ),
-                      ),
-                      onChange: (double value) {
-                        setState(() {
-                          height=value.toInt();
-                        });
-                      }),
+                        onChange: (double value) {
+                          setState(() {
+                            height = value.toInt();
+                          });
+                        }),
+                  ),
                 ],
               ),
             ),
@@ -138,15 +147,17 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "WEIGHT",
-                          style: kHeightLabelTextStyle,
+                        const Expanded(
+                          child: Text(
+                            'WEIGHT',
+                            style: kHeightLabelTextStyle,
+                          ),
                         ),
                         Text(
                           weight.toString(),
                           style: kHeightTextStyle,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12.0,
                         ),
                         Row(
@@ -160,7 +171,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
@@ -184,15 +195,17 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "AGE",
-                          style: kHeightLabelTextStyle,
+                        const Expanded(
+                          child: Text(
+                            'AGE',
+                            style: kHeightLabelTextStyle,
+                          ),
                         ),
                         Text(
                           age.toString(),
                           style: kHeightTextStyle,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12.0,
                         ),
                         Row(
@@ -206,7 +219,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
@@ -218,7 +231,6 @@ class _InputPageState extends State<InputPage> {
                                 }),
                           ],
                         ),
-
                       ],
                     ),
                   ),
@@ -227,22 +239,24 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           LargeBottomButton(
-            text: "CALCULATE",
+            text: 'CALCULATE',
             onPress: () {
-              CalculatorBrain calc = new CalculatorBrain(
-                  weight: weight,
-                  height: height,
-                  age: age,
-                  gender: selectedGender);
+              var calc = CalculatorBrain(
+                weight: weight,
+                height: height,
+                age: age,
+                gender: selectedGender,
+              );
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ResultsPage(
-                          bmiNumber: calc.calculateBmi(),
-                          bmiResult: calc.getResults(),
-                          bmiExplain: calc.resultsExplain(),
-                          dailyCalories: calc.dailyCalorieIntake(),
-                        )),
+                  builder: (context) => ResultsPage(
+                    bmiNumber: calc.calculateBmi(),
+                    bmiResult: calc.getResults(),
+                    bmiExplain: calc.resultsExplain(),
+                    dailyCalories: calc.dailyCalorieIntake(),
+                  ),
+                ),
               );
             },
           ),

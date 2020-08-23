@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.8.1
   sleek_circular_slider: ^1.1.0
+  pedantic: ^1.9.2
 
 dev_dependencies:
   flutter_test:
