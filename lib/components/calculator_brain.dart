@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class CalculatorBrain {
   CalculatorBrain({this.weight, this.height, this.age, this.gender});

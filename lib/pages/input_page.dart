@@ -1,10 +1,10 @@
-import 'package:bmi_calculator/calculator_brain.dart';
-import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/components/calculator_brain.dart';
+import 'package:bmi_calculator/pages/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'gender_card.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
+import '../components/gender_card.dart';
+import '../components/reusable_card.dart';
+import '../constants.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class InputPage extends StatefulWidget {
@@ -49,7 +49,7 @@ class _InputPageState extends State<InputPage> {
                       icon: FontAwesomeIcons.mars,
                       iconColor: selectedGender == kGender.male
                           ? maleColor = Colors.blue
-                          : maleColor = Color(0x29d2fafb),
+                          : maleColor = const Color(0x29d2fafb),
                       iconSize: 100.0,
                       text: 'Male',
                       textFont: 'FredokaOne',
